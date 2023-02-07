@@ -1,12 +1,14 @@
-import './globals.css'
-import { Montserrat } from '@next/font/google'
+import "./globals.css";
+import { Montserrat } from "@next/font/google";
 
-const montserrat = Montserrat({ subsets: ['cyrillic', 'latin'] })
+const montserrat = Montserrat({
+  subsets: ["cyrillic", "latin", "cyrillic-ext"],
+});
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className={montserrat.className}>
@@ -17,5 +19,5 @@ export default function RootLayout({
       <head />
       <body>{children}</body>
     </html>
-  )
+  );
 }
