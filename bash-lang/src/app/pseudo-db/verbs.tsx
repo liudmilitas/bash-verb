@@ -29,23 +29,20 @@ const verbs: object[] = [
   },
 ];
 
-function generatePresentSimple (verb: any) {
-    if (verb.properties.is_regular) {
-        if (verb.properties.is_last_vowel) {
-            if (verb.properties.is_soft) {
-                return {
-                    first_singular: verb.imperative + "йем",
-                }
-            } else {
-
-            }
-
-        } else {
-
-        }
+function generatePresentSimple(verb: any) {
+  if (verb.properties.is_regular) {
+    if (verb.properties.is_last_vowel) {
+      if (verb.properties.is_soft) {
+        return {
+          first_singular: verb.imperative + "йем",
+        };
+      } else {
+      }
     } else {
-        return 'Неправильный глагол!'
     }
-};
+  } else {
+    return "Неправильный глагол!";
+  }
+}
 
 export default verbs;

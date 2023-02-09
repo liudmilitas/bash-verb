@@ -99,3 +99,15 @@ a {
     color-scheme: dark;
   }
 }
+
+.pattern {
+  background-color: transparent;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #70c76f 0,
+    #70c76f 1px,
+    #54c252 0,
+    #54c252 50%
+  );
+}
