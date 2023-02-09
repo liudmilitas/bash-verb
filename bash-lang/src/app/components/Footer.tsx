@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="flex flex-col items-center justify-center text-white p-2 mt-8 drop-shadow-lg fill-white">
       <h2 className=" text-white p-1 drop-shadow w-full text-center font-semibold">
-        Спрягай-ка! — Тренажёр грамматики башкирского языка.{" "}
+        Спрягай-ка! — Тренажёр грамматики башкирского языка{" "}
         <span className="hidden">
           Башкирский язык для начинающих: изучаем глаголы, существительные и
           прилагательные в игровой форме.

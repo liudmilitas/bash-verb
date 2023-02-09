@@ -3,14 +3,24 @@ import Link from "next/link";
 import pronouns from "./pseudo-db/pronouns";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { verbs, generatePresentSimple } from "./pseudo-db/verbs";
 
 export default function Home() {
+  const verb: any = verbs[Math.floor(Math.random() * verbs.length)];
+
   return (
     <>
       <Header />
+      {console.log(generatePresentSimple(verb))}
       <main className="w-full h-full flex flex-col content-center items-center justify-center">
         <section className="bg-white h-full rounded shadow-2xl w-full max-w-[800px] flex flex-col justify-between items-center">
-          <h2 className="text-xl text-center p-2 font-semibold">Глагол</h2>
+          <h3 className="text-xl text-center p-2 font-semibold">
+            {verb.infinitive} (
+            <span className="underline underline-offset-2 decoration-double mx-1">
+              {verb.imperative}!
+            </span>
+            ) — {verb.translations.ru} {verb.translations.emoji}
+          </h3>
           <form className="flex flex-col p-4 h-full">
             <ul>
               {pronouns.map((pronoun) => (
