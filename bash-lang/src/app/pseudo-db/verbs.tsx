@@ -174,13 +174,13 @@ export function generatePresentSimple(verb: any, isNegative: boolean) {
     }
 
     if (isNegative && is_soft){
-      if (is_last_vowel) {
-        lastVowelTypeASoftEndings.map((ending) => imperative + 'мә' + ending);
+      if (!is_last_vowel) {
+        verbType = lastVowelTypeASoftEndings
       }
       return verbType?.map((ending) => imperative + 'мә' + ending);
     } else if (isNegative && !is_soft) {
-      if (is_last_vowel) {
-        lastVowelTypeAHardEndings.map((ending) => imperative + 'ма' + ending);
+      if (!is_last_vowel) {
+        verbType = lastVowelTypeAHardEndings
       }
       return verbType?.map((ending) => imperative + 'ма' + ending);
     } else {
