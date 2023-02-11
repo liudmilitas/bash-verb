@@ -1,5 +1,5 @@
 import pronouns from "../pseudo-db/pronouns";
-import { verbs, generatePresentSimple } from "../pseudo-db/verbs";
+import { generatePresentSimple, verbs } from "../pseudo-db/verbs";
 
 function VerbTraining() {
   const verb: any = verbs[Math.floor(Math.random() * verbs.length)];
