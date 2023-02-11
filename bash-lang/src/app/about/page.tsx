@@ -1,6 +1,3 @@
 export default function About() {
-
-  return (
-    <p>text</p>  
-  );
+  return <p>text</p>;
 }

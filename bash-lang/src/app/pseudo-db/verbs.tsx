@@ -99,71 +99,94 @@ export const verbs: object[] = [
   },
 ];
 
-export function generatePresentSimple(verb: any) {
-  if (verb.properties.is_regular) {
-    if (verb.properties.is_last_vowel) {
-      if (verb.properties.is_type_a) {
-        if (verb.properties.is_soft) {
-          return {
-            first_singular: verb.imperative + "йем",
-            second_singular: verb.imperative + "йһең",
-            third_singular: verb.imperative + "й",
-            first_plural: verb.imperative + "йбеҙ",
-            second_plural: verb.imperative + "йһегеҙ",
-            third_plural: verb.imperative + "йҙәр",
-          };
-        } else {
-          return {
-            first_singular: verb.imperative + "йым",
-            second_singular: verb.imperative + "йһың",
-            third_singular: verb.imperative + "й",
-            first_plural: verb.imperative + "йбыҙ",
-            second_plural: verb.imperative + "йһығыҙ",
-            third_plural: verb.imperative + "йҙар",
-          };
-        }
-      } else {
-        if (verb.properties.is_soft) {
-          return {
-            first_singular: verb.imperative + "йөм",
-            second_singular: verb.imperative + "йһөң",
-            third_singular: verb.imperative + "й",
-            first_plural: verb.imperative + "йбөҙ",
-            second_plural: verb.imperative + "йһөгөҙ",
-            third_plural: verb.imperative + "йҙәр",
-          };
-        } else {
-          return {
-            first_singular: verb.imperative + "йом",
-            second_singular: verb.imperative + "йһоң",
-            third_singular: verb.imperative + "й",
-            first_plural: verb.imperative + "йбоҙ",
-            second_plural: verb.imperative + "йһоғоҙ",
-            third_plural: verb.imperative + "йҙар",
-          };
-        }
-      }
+//
+
+export function generatePresentSimple(verb: any, isNegative: boolean) {
+  // Глагольные окончания настоящего времени
+  const lastVowelTypeASoftEndings = [
+    "йем",
+    "йһең",
+    "й",
+    "йбеҙ",
+    "йһегеҙ",
+    "йҙәр",
+  ];
+  const lastVowelTypeAHardEndings = [
+    "йым",
+    "йһың",
+    "й",
+    "йбыҙ",
+    "йһыгыҙ",
+    "йҙар",
+  ];
+  const lastVowelTypeOSoftEndings = [
+    "йөм",
+    "йһөң",
+    "й",
+    "йбөҙ",
+    "йһөгөҙ",
+    "йҙәр",
+  ];
+  const lastVowelTypeOHardEndings = [
+    "йом",
+    "йһоң",
+    "й",
+    "йбоҙ",
+    "йһогоҙ",
+    "йҙар",
+  ];
+  const lastConsonantSoftEndings = [
+    "әм",
+    "әһең",
+    "ә",
+    "әбеҙ",
+    "әһегеҙ",
+    "әләр",
+  ];
+  const lastConsonantHardEndings = [
+    "ам",
+    "аһың",
+    "а",
+    "абыҙ",
+    "аһыгыҙ",
+    "алар",
+  ];
+
+  const { properties, imperative } = verb;
+  const { is_regular, is_soft, is_type_a, is_last_vowel } = properties;
+  let verbType;
+
+  if (is_regular) {
+    if (is_soft && is_type_a && is_last_vowel) {
+      verbType = lastVowelTypeASoftEndings;
+    } else if (!is_soft && is_type_a && is_last_vowel) {
+      verbType = lastVowelTypeAHardEndings;
+    } else if (is_soft && !is_type_a && is_last_vowel) {
+      verbType = lastVowelTypeOSoftEndings;
+    } else if (!is_soft && !is_type_a && is_last_vowel) {
+      verbType = lastVowelTypeOHardEndings;
+    } else if (is_soft && !is_last_vowel) {
+      verbType = lastConsonantSoftEndings;
+    } else if (!is_soft && !is_last_vowel) {
+      verbType = lastConsonantHardEndings;
     } else {
-      if (verb.properties.is_soft) {
-        return {
-          first_singular: verb.imperative + "әм",
-          second_singular: verb.imperative + "әһең",
-          third_singular: verb.imperative + "ә",
-          first_plural: verb.imperative + "әбеҙ",
-          second_plural: verb.imperative + "әһегеҙ",
-          third_plural: verb.imperative + "әләр",
-        };
-      } else {
-        return {
-          first_singular: verb.imperative + "ам",
-          second_singular: verb.imperative + "аһың",
-          third_singular: verb.imperative + "а",
-          first_plural: verb.imperative + "абыҙ",
-          second_plural: verb.imperative + "аһығыҙ",
-          third_plural: verb.imperative + "алар",
-        };
-      }
+      return "Invalid verb object!";
     }
+
+    if (isNegative && is_soft){
+      if (is_last_vowel) {
+        lastVowelTypeASoftEndings.map((ending) => imperative + 'мә' + ending);
+      }
+      return verbType?.map((ending) => imperative + 'мә' + ending);
+    } else if (isNegative && !is_soft) {
+      if (is_last_vowel) {
+        lastVowelTypeAHardEndings.map((ending) => imperative + 'ма' + ending);
+      }
+      return verbType?.map((ending) => imperative + 'ма' + ending);
+    } else {
+      return verbType?.map((ending) => imperative + ending);
+    }
+
   } else {
     return "Неправильный глагол!";
   }
