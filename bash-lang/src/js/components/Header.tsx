@@ -14,7 +14,7 @@ function Header() {
       </Link>
       <Link
         href={"/about"}
-        title="Как работать со 'Спрягай-кой'"
+        title="Как работать с тренажёром"
         className=" hover:text-emerald-50 w-fit h-full flex items-center py-4 px-2"
       >
         <span className="whitespace-nowrap font-semibold underline underline-offset-4 text-sm lg:text-base">

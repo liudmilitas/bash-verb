@@ -20,7 +20,7 @@ function Keyboard() {
           {specialSymbols.map((symbol) => (
             <li key={symbol}>
               <button
-                className="bg-lime-600 hover:bg-lime-500 text-white font-bold px-4 py-2 border-b-4 border-lime-700 hover:border-lime-600 rounded uppercase"
+                className="bg-lime-600 hover:bg-lime-700 hover:outline hover:outline-offset-2 hover:outline-lime-400 text-white font-bold px-4 py-2 border-b-4 border-lime-700 hover:border-lime-800 rounded uppercase duration-100"
                 onClick={(e) => e.preventDefault()}
               >
                 {symbol}
