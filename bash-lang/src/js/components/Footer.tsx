@@ -15,7 +15,7 @@ function Footer() {
           target={"_blank"}
           className="flex mr-3 hover:fill-emerald-100 hover:text-emerald-100 font-semibold underline underline-offset-2"
           href="https://github.com/liudmilitas/bash-lang"
-          title="Ссылка на репозиторий в ГитХабе"
+          title="Страница сайта на Гитхабе"
         >
           <svg
             className="w-6 h-6 mr-1 fill-inherit"

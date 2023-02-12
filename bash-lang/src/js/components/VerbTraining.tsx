@@ -1,7 +1,11 @@
+import generatePresentSimple from "../functions/verb-functions";
 import pronouns from "../pseudo-db/pronouns";
-import { generatePresentSimple, verbs } from "../pseudo-db/verbs";
+import { verbs } from "../pseudo-db/verbs";
+import Keyboard from "./Keyboard";
 
 function VerbTraining() {
+  const pattern =
+    "^[а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+(?:[ -][а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+)*$";
   const verb: any = verbs[Math.floor(Math.random() * verbs.length)];
   console.log(generatePresentSimple(verb, true));
   return (
@@ -13,8 +17,8 @@ function VerbTraining() {
         </span>
         ) — {verb.translations.ru} {verb.translations.emoji}
       </h3>
-      <form className="flex flex-col p-4 h-full">
-        <ul>
+      <form className="flex flex-col p-4 h-full items-center">
+        <ul className="w-full max-w-fit">
           {pronouns.map((pronoun) => (
             <li
               className="flex w-full justify-between items-center"
@@ -32,10 +36,15 @@ function VerbTraining() {
                 id={pronoun.id.toString()}
                 type="text"
                 placeholder={pronoun.bash}
+                pattern={pattern}
+                title="Допускается только кириллица"
+                required
               />
             </li>
           ))}
         </ul>
+
+        <Keyboard />
 
         <button
           className="bg-lime-700 hover:bg-lime-800 text-white shadow p-2 m-4 rounded-lg hover:outline hover:outline-offset-2 hover:outline-2 hover:outline-emerald-500"
