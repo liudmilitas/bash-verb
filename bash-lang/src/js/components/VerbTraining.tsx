@@ -1,3 +1,5 @@
+"use client";
+
 import { FormEvent, useState } from "react";
 import generatePresentSimple from "../functions/verb-functions";
 import pronouns from "../pseudo-db/pronouns";
@@ -9,6 +11,13 @@ function VerbTraining() {
     "^[а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+(?:[ -][а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+)*$";
   const verb: any = verbs[Math.floor(Math.random() * verbs.length)];
   const patternWarning = "Пожалуйста, пишите кириллицей";
+
+  const [firstForm, setFirstForm] = useState<string>("");
+  const [secondForm, setSecondForm] = useState<string>("");
+  const [thirdForm, setThirdForm] = useState<string>("");
+  const [fourthForm, setFourthForm] = useState<string>("");
+  const [fifthForm, setFifthForm] = useState<string>("");
+  const [sixthForm, setSixthForm] = useState<string>("");
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -52,6 +61,7 @@ function VerbTraining() {
               placeholder={pronouns[0].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setFirstForm(e.target.value)}
               required
             />
           </li>
@@ -73,6 +83,7 @@ function VerbTraining() {
               placeholder={pronouns[1].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setSecondForm(e.target.value)}
               required
             />
           </li>
@@ -94,6 +105,7 @@ function VerbTraining() {
               placeholder={pronouns[2].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setThirdForm(e.target.value)}
               required
             />
           </li>
@@ -115,6 +127,7 @@ function VerbTraining() {
               placeholder={pronouns[3].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setFourthForm(e.target.value)}
               required
             />
           </li>
@@ -136,6 +149,7 @@ function VerbTraining() {
               placeholder={pronouns[4].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setFifthForm(e.target.value)}
               required
             />
           </li>
@@ -157,6 +171,7 @@ function VerbTraining() {
               placeholder={pronouns[5].bash}
               pattern={pattern}
               title={patternWarning}
+              onChange={(e) => setSixthForm(e.target.value)}
               required
             />
           </li>
