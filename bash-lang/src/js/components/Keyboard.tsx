@@ -22,7 +22,6 @@ function Keyboard() {
     setLetter(e.currentTarget.innerText.toLowerCase());
   }
 
-  console.log("letter", letter);
   return (
     <section className="w-full py-4">
       <fieldset className="border border-solid border-lime-700 p-3 bg-emerald-50 rounded">

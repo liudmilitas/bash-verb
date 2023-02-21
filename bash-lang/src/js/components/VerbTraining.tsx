@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import generatePresentSimple from "../functions/verb-functions";
 import pronouns from "../pseudo-db/pronouns";
 import { verbs } from "../pseudo-db/verbs";
@@ -9,9 +9,13 @@ import Keyboard from "./Keyboard";
 function VerbTraining() {
   const pattern =
     "^[а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+(?:[ -][а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+)*$";
-  const verb: any = verbs[Math.floor(Math.random() * verbs.length)];
   const patternWarning = "Пожалуйста, пишите кириллицей";
 
+  function getRandomVerb(){
+    return verbs[Math.floor(Math.random() * verbs.length)]
+  };
+  const verb: any = useMemo(() => getRandomVerb(), []);
+  
   const [firstForm, setFirstForm] = useState<string>("");
   const [secondForm, setSecondForm] = useState<string>("");
   const [thirdForm, setThirdForm] = useState<string>("");
@@ -19,9 +23,27 @@ function VerbTraining() {
   const [fifthForm, setFifthForm] = useState<string>("");
   const [sixthForm, setSixthForm] = useState<string>("");
 
+  function checkInput() {
+    let correctForms = generatePresentSimple(verb, true);
+    if (
+      firstForm === correctForms[0] &&
+      secondForm === correctForms[1] &&
+      thirdForm === correctForms[2] &&
+      fourthForm === correctForms[3] &&
+      fifthForm === correctForms[4] &&
+      sixthForm === correctForms[5]
+    ) {
+      alert("Верно!");
+    } else {
+      alert("Неверно!");
+    }
+  }
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    checkInput();
   };
+
+  
   console.log(generatePresentSimple(verb, true));
 
   return (
@@ -42,6 +64,7 @@ function VerbTraining() {
         <span className="whitespace-nowrap">⛔ отрицательный залог</span>
       </p>
       <form className="flex flex-col p-4 h-full items-center">
+        <div className="flex flex-col lg:flex-row lg:gap-12 items-center w-full">
         <ul className="w-full max-w-fit divide-y-2">
           <li
             className="flex w-full justify-between items-center"
@@ -178,10 +201,12 @@ function VerbTraining() {
         </ul>
 
         <Keyboard />
+        </div>
 
         <button
           className="bg-lime-700 hover:bg-lime-800 text-white shadow p-2 m-4 rounded-lg hover:outline hover:outline-offset-2 hover:outline-2 hover:outline-lime-400"
           type="submit"
+          onSubmit={(e) => onSubmit(e)}
         >
           Проверить
         </button>
