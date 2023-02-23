@@ -23,7 +23,7 @@ function Keyboard() {
   }
 
   return (
-    <section className="w-full py-4">
+    <section className="py-4">
       <fieldset className="border border-solid border-lime-700 p-3 bg-emerald-50 rounded">
         <legend className="text-lime-700">Башкирские буквы</legend>
         <ul className="grid grid-cols-5 gap-2 w-full">

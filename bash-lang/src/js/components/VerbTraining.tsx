@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import generatePresentSimple from "../functions/verb-functions";
 import pronouns from "../pseudo-db/pronouns";
@@ -16,31 +17,26 @@ function VerbTraining() {
   };
   const verb: any = useMemo(() => getRandomVerb(), []);
   
-  const [firstForm, setFirstForm] = useState<string>("");
-  const [secondForm, setSecondForm] = useState<string>("");
-  const [thirdForm, setThirdForm] = useState<string>("");
-  const [fourthForm, setFourthForm] = useState<string>("");
-  const [fifthForm, setFifthForm] = useState<string>("");
-  const [sixthForm, setSixthForm] = useState<string>("");
+  const [inputData, setInputData] = useState({
+    form1: "",
+    form2: "",
+    form3: "",
+    form4: "",
+    form5: "",
+    form6: "",
+  });
 
-  function checkInput() {
-    let correctForms = generatePresentSimple(verb, true);
-    if (
-      firstForm === correctForms[0] &&
-      secondForm === correctForms[1] &&
-      thirdForm === correctForms[2] &&
-      fourthForm === correctForms[3] &&
-      fifthForm === correctForms[4] &&
-      sixthForm === correctForms[5]
-    ) {
-      alert("Верно!");
-    } else {
-      alert("Неверно!");
-    }
+  function handleChanges(e: any) {
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    })
+    console.log(inputData);
   }
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    checkInput();
+
   };
 
   
@@ -66,138 +62,32 @@ function VerbTraining() {
       <form className="flex flex-col p-4 h-full items-center">
         <div className="flex flex-col lg:flex-row lg:gap-12 items-center w-full">
         <ul className="w-full max-w-fit divide-y-2">
-          <li
+          {pronouns.map((pronoun) => (
+            <li
             className="flex w-full justify-between items-center"
-            key={pronouns[0].id}
+            key={pronoun.id}
           >
             <label
               className="text-gray-700 font-bold mr-2"
-              title={pronouns[0].ru}
-              htmlFor={pronouns[0].id.toString()}
+              title={pronoun.ru}
+              htmlFor={pronoun.id.toString()}
             >
-              {pronouns[0].bash.toUpperCase()}
+              {pronoun.bash.toUpperCase()}
             </label>
             <input
               className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[0].id.toString()}
+              id={pronoun.id.toString()}
               type="text"
-              placeholder={pronouns[0].bash}
+              placeholder={pronoun.bash}
               pattern={pattern}
               title={patternWarning}
-              onChange={(e) => setFirstForm(e.target.value)}
+              name={"form" + pronoun.id.toString()}
+              onChange={(e) => handleChanges(e.target.value?.toLowerCase())}
               required
             />
           </li>
-          <li
-            className="flex w-full justify-between items-center"
-            key={pronouns[1].id}
-          >
-            <label
-              className="text-gray-700 font-bold mr-2"
-              title={pronouns[1].ru}
-              htmlFor={pronouns[1].id.toString()}
-            >
-              {pronouns[1].bash.toUpperCase()}
-            </label>
-            <input
-              className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[1].id.toString()}
-              type="text"
-              placeholder={pronouns[1].bash}
-              pattern={pattern}
-              title={patternWarning}
-              onChange={(e) => setSecondForm(e.target.value)}
-              required
-            />
-          </li>
-          <li
-            className="flex w-full justify-between items-center"
-            key={pronouns[2].id}
-          >
-            <label
-              className="text-gray-700 font-bold mr-2"
-              title={pronouns[2].ru}
-              htmlFor={pronouns[2].id.toString()}
-            >
-              {pronouns[2].bash.toUpperCase()}
-            </label>
-            <input
-              className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[2].id.toString()}
-              type="text"
-              placeholder={pronouns[2].bash}
-              pattern={pattern}
-              title={patternWarning}
-              onChange={(e) => setThirdForm(e.target.value)}
-              required
-            />
-          </li>
-          <li
-            className="flex w-full justify-between items-center"
-            key={pronouns[3].id}
-          >
-            <label
-              className="text-gray-700 font-bold mr-2"
-              title={pronouns[3].ru}
-              htmlFor={pronouns[3].id.toString()}
-            >
-              {pronouns[3].bash.toUpperCase()}
-            </label>
-            <input
-              className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[3].id.toString()}
-              type="text"
-              placeholder={pronouns[3].bash}
-              pattern={pattern}
-              title={patternWarning}
-              onChange={(e) => setFourthForm(e.target.value)}
-              required
-            />
-          </li>
-          <li
-            className="flex w-full justify-between items-center"
-            key={pronouns[4].id}
-          >
-            <label
-              className="text-gray-700 font-bold mr-2"
-              title={pronouns[4].ru}
-              htmlFor={pronouns[4].id.toString()}
-            >
-              {pronouns[4].bash.toUpperCase()}
-            </label>
-            <input
-              className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[4].id.toString()}
-              type="text"
-              placeholder={pronouns[4].bash}
-              pattern={pattern}
-              title={patternWarning}
-              onChange={(e) => setFifthForm(e.target.value)}
-              required
-            />
-          </li>
-          <li
-            className="flex w-full justify-between items-center"
-            key={pronouns[5].id}
-          >
-            <label
-              className="text-gray-700 font-bold mr-2"
-              title={pronouns[5].ru}
-              htmlFor={pronouns[5].id.toString()}
-            >
-              {pronouns[5].bash.toUpperCase()}
-            </label>
-            <input
-              className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
-              id={pronouns[5].id.toString()}
-              type="text"
-              placeholder={pronouns[5].bash}
-              pattern={pattern}
-              title={patternWarning}
-              onChange={(e) => setSixthForm(e.target.value)}
-              required
-            />
-          </li>
+          ))
+          }
         </ul>
 
         <Keyboard />
@@ -210,6 +100,8 @@ function VerbTraining() {
         >
           Проверить
         </button>
+
+        <Link href={"#"} className="text-left">Посмотреть формы глагола в справочнике</Link>
       </form>
     </section>
   );
