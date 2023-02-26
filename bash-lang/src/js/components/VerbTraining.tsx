@@ -8,19 +8,12 @@ import { verbs } from "../pseudo-db/verbs";
 import Keyboard from "./Keyboard";
 
 function VerbTraining() {
-  const pattern =
-    "^[а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+(?:[ -][а-яА-ЯёЁәӘөӨҡҠғҒҫҪҙҘһҺүҮңҢ]+)*$";
   const patternWarning = "Пожалуйста, пишите кириллицей";
 
   function getRandomVerb() {
     return verbs[Math.floor(Math.random() * verbs.length)];
   }
   const verb: any = useMemo(() => getRandomVerb(), []);
-  const correctForms: any = useMemo(
-    () => generatePresentSimple(verb, true),
-    []
-  );
-  console.log("correctForms", correctForms);
 
   const [inputData, setInputData] = useState({
     form1: "",
@@ -36,22 +29,23 @@ function VerbTraining() {
     const value = e?.target.value;
     setInputData({
       ...inputData,
-      [name]: value.trim().toLowerCase(),
+      [name]: value.toLowerCase().replace(/\s+/g, " ").trim(),
     });
   }
-  console.log("inputData", inputData);
+
+  const results: boolean[] = [];
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const results: string[] = [];
+    const correctForms: any = generatePresentSimple(verb, true);
     correctForms.map((correctForm: string) => {
       if (
         correctForm ===
         Object.values(inputData)[correctForms.indexOf(correctForm)]
       ) {
-        results.push("correct");
+        results.push(true);
       } else {
-        results.push("incorrect");
+        results.push(false);
       }
     });
     console.log("results", results);
@@ -79,30 +73,39 @@ function VerbTraining() {
         onSubmit={(e) => handleFormSubmit(e)}
       >
         <div className="flex flex-col lg:flex-row lg:gap-12 items-center w-full">
-          <ul className="w-full max-w-fit divide-y-2">
+          <ul className="max-w-fit divide-y-2 w-80">
             {pronouns.map((pronoun) => (
               <li
-                className="flex w-full justify-between items-center"
+                className="grid grid-cols-5 gap-2 items-center py-2"
                 key={pronoun.id}
               >
                 <label
-                  className="text-gray-700 font-bold mr-2"
+                  className="text-gray-700 font-bold"
                   title={pronoun.ru}
                   htmlFor={pronoun.id.toString()}
                 >
                   {pronoun.bash.toUpperCase()}
                 </label>
                 <input
-                  className="bg-gray-50 shadow-inner rounded-lg p-2 my-2"
+                  className="bg-gray-50 shadow-inner rounded-lg col-span-3 p-2"
                   id={pronoun.id.toString()}
                   type="text"
+                  max={30}
                   placeholder={pronoun.bash}
-                  pattern={pattern}
                   title={patternWarning}
                   name={"form" + pronoun.id}
                   onChange={(e) => handleChanges(e)}
                   required
                 />
+                <div className="text-right">
+                  {results[pronoun.id - 1] === true ? (
+                    <span>✔️</span>
+                  ) : results[pronoun.id - 1] === false ? (
+                    <span>❌</span>
+                  ) : (
+                    <span>🔲</span>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
