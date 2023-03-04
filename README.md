@@ -1,7 +1,10 @@
 # Bashkir Grammar Practice App (WIP)
 
-### Web app for practicing Bashkir verb conjugations
-Created with Next.js, TypeScript and Tailwind
+### Simple web app for practicing Bashkir verb conjugations
+
+Beginner-friendly verb conjugation practice web app is a simple and interactive way to practice conjugating verbs in Bashkir language. Gain confidence in your language skills with easy-to-follow exercises and comprehensive verb form overviews!
+
+Created with Next.js, TypeScript and Tailwind.
 
 ### Quick Setup
 
