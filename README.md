@@ -18,6 +18,6 @@ $ npm run build
 
 ### Special Thanks
 
-Credit to @baileysnyder, the creator of [Japanese Conjugation Practice](https://github.com/baileysnyder/japanese-conjugation) app,  for the idea and inspiration!
+Credit to **baileysnyder**, the creator of [Japanese Conjugation Practice](https://github.com/baileysnyder/japanese-conjugation) app,  for the idea and inspiration!
 
 <sub><sup>Keywords: bashkir language, bashkir for beginners, newbie bashkir, basic bashkir, bashqortsa, bashqort tele, башкирский язык, башкирский для начинающих, начальный башкирский, башкирские глаголы, спряжение башкирского глагола, башҡортса, башҡорт теле</sup></sub>
