@@ -73,10 +73,10 @@ function VerbTraining() {
         onSubmit={(e) => handleFormSubmit(e)}
       >
         <div className="flex flex-col lg:flex-row lg:gap-12 items-center w-full">
-          <ul className="max-w-fit divide-y-2 w-80">
+          <ul className="max-w-fit divide-y-2 w-full">
             {pronouns.map((pronoun) => (
               <li
-                className="grid grid-cols-5 gap-2 items-center py-2"
+                className="flex justify-between gap-2 items-center py-2"
                 key={pronoun.id}
               >
                 <label
@@ -87,7 +87,7 @@ function VerbTraining() {
                   {pronoun.bash.toUpperCase()}
                 </label>
                 <input
-                  className="bg-gray-50 shadow-inner rounded-lg col-span-3 p-2"
+                  className="bg-gray-50 shadow-inner rounded-lg p-2"
                   id={pronoun.id.toString()}
                   type="text"
                   max={30}
@@ -97,15 +97,6 @@ function VerbTraining() {
                   onChange={(e) => handleChanges(e)}
                   required
                 />
-                <div className="text-right">
-                  {results[pronoun.id - 1] === true ? (
-                    <span>✔️</span>
-                  ) : results[pronoun.id - 1] === false ? (
-                    <span>❌</span>
-                  ) : (
-                    <span>🔲</span>
-                  )}
-                </div>
               </li>
             ))}
           </ul>
@@ -114,15 +105,11 @@ function VerbTraining() {
         </div>
 
         <button
-          className="bg-lime-700 hover:bg-lime-800 text-white shadow p-2 m-4 rounded-lg hover:outline hover:outline-offset-2 hover:outline-2 hover:outline-lime-400"
+          className="bg-lime-700 hover:bg-lime-800 text-white font-medium shadow py-3 px-8 mt-8 rounded-lg hover:outline hover:outline-offset-2 hover:outline-2 hover:outline-lime-400"
           type="submit"
         >
           Проверить
         </button>
-
-        <Link href={"#"} className="text-left">
-          Посмотреть формы глагола в справочнике
-        </Link>
       </form>
     </section>
   );
