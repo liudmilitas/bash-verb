@@ -1,8 +1,23 @@
-# Beginner Bashkir Course (A1-A2)
+# Bashkir Grammar Practice App (WIP)
 
-24 bite-size lessons with easy-to-follow grammatics and Anki-based listening skills training.
+### Web app for practicing Bashkir verb conjugations
+Created with Next.js, TypeScript and Tailwind
 
-TODO: BASHKIR GRAMMAR TRAINING MADE EASY: VERBS, NOUNS, ADJECTIVES AND MORE
+### Quick Setup
 
-Created with Next.js, Tailwind
+```bash
+# install dependencies
+$ npm install
 
+# build for development
+$ npm run dev
+
+# build for production
+$ npm run build
+```
+
+### Special Thanks
+
+Credit to @baileysnyder, the creator of [Japanese Conjugation Practice](https://github.com/baileysnyder/japanese-conjugation) app,  for the idea and inspiration!
+
+<sub><sup>Keywords: bashkir language, bashkir for beginners, newbie bashkir, basic bashkir, bashqortsa, bashqort tele, башкирский язык, башкирский для начинающих, начальный башкирский, башкирские глаголы, спряжение башкирского глагола, башҡортса, башҡорт теле</sup></sub>
