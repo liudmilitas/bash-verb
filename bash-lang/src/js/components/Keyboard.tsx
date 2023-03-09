@@ -22,6 +22,8 @@ function Keyboard() {
     setLetter(e.currentTarget.innerText.toLowerCase());
   }
 
+  // TODO: find a way to pass the letter to the input field
+
   return (
     <section className="py-4">
       <fieldset className="border border-solid border-lime-700 p-3 bg-emerald-50 rounded">
